@@ -36,7 +36,7 @@ namespace API.Extensions
             services.AddScoped<TokenService>();
 
             services.AddAuthorization(opt => {
-                opt.AddPolicy("IsActiveHost", policy => 
+                opt.AddPolicy("IsActivityHost", policy => 
                 {   
                     policy.Requirements.Add(new IsHostRequirement());
                 });
