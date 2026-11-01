@@ -7,14 +7,18 @@ import * as Yup from 'yup';
 import ValidationError from "../errors/ValidationError";
 
 export default function RegisterForm() {
-    const {userStore} = useStore();
+    // Destructure modalStore alongside userStore
+    const {userStore, modalStore} = useStore();
+
     return (
         <Formik
-            initialValues={{displayName: '',username: '', email: '', password: '', error: null}}
-            onSubmit={(values, {setErrors}) => userStore.register(values).catch(error => 
-            setErrors({error}))}
-            
-            validationSchema = {Yup.object({
+            initialValues={{displayName: '', username: '', email: '', password: '', error: null}}
+            onSubmit={(values, {setErrors}) => 
+                userStore.register(values)
+                    .then(() => modalStore.closeModal()) // Close the modal on success
+                    .catch(error => setErrors({error}))
+            }
+            validationSchema={Yup.object({
                 displayName: Yup.string().required(),
                 username: Yup.string().required(),
                 email: Yup.string().required(),
@@ -34,13 +38,12 @@ export default function RegisterForm() {
                 />
                 <Button 
                     disabled={!isValid || !dirty || isSubmitting}
-                    loading = {isSubmitting}
+                    loading={isSubmitting}
                     positive content='Register'
                     type='submit' fluid
                 />
             </Form>
         )}
-            
         </Formik>
     )
 }

@@ -71,7 +71,7 @@ namespace API.Controllers
 
             if(result.Succeeded)
             {
-                CreateUserObject(user);
+                return CreateUserObject(user);
             }
 
             return BadRequest(result.Errors);
