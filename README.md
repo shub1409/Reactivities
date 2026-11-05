@@ -38,26 +38,6 @@ Tools
 
 The backend follows a layered architecture with responsibilities separated into different projects.
 
-Reactivities
-│
-├── API
-│   └── Handles HTTP requests and API endpoints
-│
-├── Application
-│   └── Contains application business logic
-│
-├── Domain
-│   └── Contains domain entities and core models
-│
-├── Infrastructure
-│   └── Handles external infrastructure concerns
-│
-├── Persistence
-│   └── Handles database operations and EF Core
-│
-└── client-app
-    └── React frontend application
-
 ✨ Key Features
 
 - Activity creation and management
